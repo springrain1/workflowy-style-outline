@@ -40,7 +40,7 @@
     border-color: var(--text-accent);
 }
 
-.workflowy-search {
+.workflowy-toolbar .workflowy-search {
     padding: 8px 12px;
     border: 1px solid var(--background-modifier-border);
     border-radius: 6px;
@@ -52,7 +52,7 @@
     transition: border-color 0.2s ease;
 }
 
-.workflowy-search:focus {
+.workflowy-toolbar .workflowy-search:focus {
     outline: none;
     border-color: var(--text-accent);
 }
@@ -302,10 +302,7 @@
     }
 }
 
-/* 层级缩进线 - 改进版本 */
-.workflowy-item {
-    position: relative;
-}
+/* 层级缩进线 - 基于 .workflowy-item 已有的 position: relative */
 
 /* 主缩进线 - 根据层级动态定位 */
 .workflowy-item::before {
@@ -560,6 +557,7 @@
 /* 代码块样式优化 */
 .workflowy-container .obsidian-block-renderer pre {
     margin: 0.5em 0;
+    position: relative !important;
 }
 
 /* 引用块样式优化 */
@@ -577,8 +575,7 @@
 .workflowy-container .obsidian-block-renderer hr {
     margin: 0.5em 0;
 }
-/* ==
-================== 暗色主题 Callout 和表格优化 ==================== */
+/* ==================== 暗色主题 Callout 和表格优化 ==================== */
 
 /* ========== 深蓝主题 (Deep Blue) ========== */
 .workflowy-container.workflowy-theme-deep-blue .obsidian-paragraph .callout {
@@ -811,10 +808,6 @@
 }
 
 /* obsidian-block-renderer 中的代码块也需要相同处理 */
-.workflowy-container .obsidian-block-renderer pre {
-    position: relative !important;
-}
-
 .workflowy-container .obsidian-block-renderer pre .clickable-icon,
 .workflowy-container .obsidian-block-renderer pre .copy-code-button {
     position: absolute !important;
@@ -1159,7 +1152,7 @@
 /* ==================== 搜索功能增强样式 ==================== */
 
 /* 搜索容器 */
-.workflowy-search-container {
+.workflowy-toolbar .workflowy-search-container {
     position: relative;
     display: flex;
     align-items: center;
@@ -1318,7 +1311,6 @@ mark.search-highlight {
     /* 多行显示支持 - 参考源码模式 */
     overflow: hidden !important;
     white-space: pre-wrap !important;
-    word-wrap: break-word !important;
     /* 注意：不要设置 display，让内联样式控制显示/隐藏 */
 }
 
@@ -1479,7 +1471,7 @@ mark.search-highlight {
 }
 
 /* 搜索容器优化 */
-.workflowy-search-container {
+.workflowy-navigation-header .workflowy-search-container {
     position: relative;
     display: flex;
     align-items: center;
@@ -1499,7 +1491,7 @@ mark.search-highlight {
 }
 
 /* 搜索输入框优化 */
-.workflowy-search {
+.workflowy-navigation-header .workflowy-search {
     width: 100%;
     padding: 6px 32px 6px 12px;
     border: 1px solid var(--background-modifier-border);
@@ -1510,14 +1502,14 @@ mark.search-highlight {
     transition: all 0.2s ease;
 }
 
-.workflowy-search:focus {
+.workflowy-navigation-header .workflowy-search:focus {
     outline: none;
     border-color: var(--interactive-accent);
     background: var(--background-primary);
     box-shadow: 0 0 0 2px var(--interactive-accent-hover);
 }
 
-.workflowy-search::placeholder {
+.workflowy-navigation-header .workflowy-search::placeholder {
     color: var(--text-faint);
 }
 

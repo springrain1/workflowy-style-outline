@@ -18,9 +18,6 @@
     --theme-accent: #3498db;
     --theme-bullet: #95a5a6;
     --theme-line: #ecf0f1;
-}
-
-.workflowy-container.workflowy-theme-classic-white {
     background: var(--theme-bg-primary) !important;
     color: var(--theme-text-normal) !important;
 }
@@ -55,15 +52,13 @@
     --theme-accent: #ff9500;
     --theme-bullet: #4cd964;
     --theme-line: #2ecc71;
-}
-
-.workflowy-container.workflowy-theme-dark-orange-green {
     background: var(--theme-bg-primary) !important;
     color: var(--theme-text-normal) !important;
 }
 
 .workflowy-container.workflowy-theme-dark-orange-green .workflowy-content {
     color: var(--theme-text-normal) !important;
+    caret-color: #ff9500;
 }
 
 .workflowy-container.workflowy-theme-dark-orange-green .workflowy-bullet {
@@ -93,9 +88,6 @@
     --theme-accent: #8b7355;
     --theme-bullet: #9a9a9a;
     --theme-line: #d0d0c8;
-}
-
-.workflowy-container.workflowy-theme-warm-beige {
     background: var(--theme-bg-primary) !important;
     color: var(--theme-text-normal) !important;
 }
@@ -130,9 +122,6 @@
     --theme-accent: #9b59b6;
     --theme-bullet: #a569bd;
     --theme-line: #d5c5e5;
-}
-
-.workflowy-container.workflowy-theme-soft-purple {
     background: var(--theme-bg-primary) !important;
     color: var(--theme-text-normal) !important;
 }
@@ -167,15 +156,13 @@
     --theme-accent: #5dade2;
     --theme-bullet: #c0c0c0;
     --theme-line: #3a4a5a;
-}
-
-.workflowy-container.workflowy-theme-deep-blue {
     background: var(--theme-bg-primary) !important;
     color: var(--theme-text-normal) !important;
 }
 
 .workflowy-container.workflowy-theme-deep-blue .workflowy-content {
     color: var(--theme-text-normal) !important;
+    caret-color: #5dade2;
 }
 
 .workflowy-container.workflowy-theme-deep-blue .workflowy-bullet {
@@ -205,15 +192,13 @@
     --theme-accent: #909090;
     --theme-bullet: #c0c0c0;
     --theme-line: #4a4a4a;
-}
-
-.workflowy-container.workflowy-theme-dark-gray {
     background: var(--theme-bg-primary) !important;
     color: var(--theme-text-normal) !important;
 }
 
 .workflowy-container.workflowy-theme-dark-gray .workflowy-content {
     color: var(--theme-text-normal) !important;
+    caret-color: #e0e0e0;
 }
 
 .workflowy-container.workflowy-theme-dark-gray .workflowy-bullet {
@@ -243,9 +228,6 @@
     --theme-accent: #4caf50;
     --theme-bullet: #66bb6a;
     --theme-line: #a5d6a7;
-}
-
-.workflowy-container.workflowy-theme-forest-green {
     background: var(--theme-bg-primary) !important;
     color: var(--theme-text-normal) !important;
 }
@@ -280,9 +262,6 @@
     --theme-accent: #2196f3;
     --theme-bullet: #64b5f6;
     --theme-line: #90caf9;
-}
-
-.workflowy-container.workflowy-theme-ocean-blue {
     background: var(--theme-bg-primary) !important;
     color: var(--theme-text-normal) !important;
 }
@@ -317,9 +296,6 @@
     --theme-accent: #ff9800;
     --theme-bullet: #ffb74d;
     --theme-line: #ffcc80;
-}
-
-.workflowy-container.workflowy-theme-sunset-orange {
     background: var(--theme-bg-primary) !important;
     color: var(--theme-text-normal) !important;
 }
@@ -354,9 +330,6 @@
     --theme-accent: #e91e63;
     --theme-bullet: #f06292;
     --theme-line: #f48fb1;
-}
-
-.workflowy-container.workflowy-theme-cherry-pink {
     background: var(--theme-bg-primary) !important;
     color: var(--theme-text-normal) !important;
 }
@@ -391,15 +364,13 @@
     --theme-accent: #ffffff;
     --theme-bullet: #ffffff;
     --theme-line: #333333;
-}
-
-.workflowy-container.workflowy-theme-midnight-black {
     background: var(--theme-bg-primary) !important;
     color: var(--theme-text-normal) !important;
 }
 
 .workflowy-container.workflowy-theme-midnight-black .workflowy-content {
     color: var(--theme-text-normal) !important;
+    caret-color: #ffffff;
 }
 
 .workflowy-container.workflowy-theme-midnight-black .workflowy-bullet {
@@ -433,38 +404,20 @@
 }
 
 
-/* ==================== 暗色主题优化 ==================== */
+/* ==================== 暗色主题折叠节点阴影优化 ==================== */
 
-/* 暗色主题光标颜色优化 */
-.workflowy-container.workflowy-theme-dark-orange-green .workflowy-content {
-    caret-color: #ff9500; /* 橙色光标，与主题文字颜色一致 */
-}
-
-.workflowy-container.workflowy-theme-deep-blue .workflowy-content {
-    caret-color: #5dade2; /* 亮蓝色光标，与主题强调色一致 */
-}
-
-.workflowy-container.workflowy-theme-dark-gray .workflowy-content {
-    caret-color: #e0e0e0; /* 浅灰色光标，与文字颜色一致 */
-}
-
-.workflowy-container.workflowy-theme-midnight-black .workflowy-content {
-    caret-color: #ffffff; /* 纯白光标，与文字颜色一致 */
-}
-
-/* 暗色主题折叠节点阴影优化 */
 .workflowy-container.workflowy-theme-dark-orange-green .workflowy-item:has(.workflowy-collapse.collapsed) .workflowy-bullet {
-    box-shadow: 0 0 0 4px rgba(76, 217, 100, 0.3) !important; /* 绿色半透明阴影 */
+    box-shadow: 0 0 0 4px rgba(76, 217, 100, 0.3) !important;
 }
 
 .workflowy-container.workflowy-theme-deep-blue .workflowy-item:has(.workflowy-collapse.collapsed) .workflowy-bullet {
-    box-shadow: 0 0 0 4px rgba(93, 173, 226, 0.35) !important; /* 蓝色半透明阴影 */
+    box-shadow: 0 0 0 4px rgba(93, 173, 226, 0.35) !important;
 }
 
 .workflowy-container.workflowy-theme-dark-gray .workflowy-item:has(.workflowy-collapse.collapsed) .workflowy-bullet {
-    box-shadow: 0 0 0 4px rgba(192, 192, 192, 0.3) !important; /* 浅灰半透明阴影 */
+    box-shadow: 0 0 0 4px rgba(192, 192, 192, 0.3) !important;
 }
 
 .workflowy-container.workflowy-theme-midnight-black .workflowy-item:has(.workflowy-collapse.collapsed) .workflowy-bullet {
-    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25) !important; /* 白色半透明阴影 */
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25) !important;
 }
