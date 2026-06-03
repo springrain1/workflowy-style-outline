@@ -4,7 +4,96 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-## v2.6
+## v2.8
+
+### ✨ New Features
+
+#### Daily Notes Plus Aggregated Outline View
+- **Brand new Daily Notes aggregated view**: Display and edit multiple Daily Notes in a single unified view
+- **Three note source modes**:
+  - Daily Notes mode: Automatically reads Obsidian core Daily Notes plugin configuration
+  - Folder mode: Select any folder to aggregate notes
+  - Tag mode: Filter notes by tags
+- **Flexible filtering and sorting**:
+  - Sorting: date (ascending/descending), creation time, modification time, file name
+  - Time ranges: this week/month/year, last week/month/year, this/last quarter, custom range
+  - Presets: save and quickly switch between common configurations
+- **Efficient editing experience**:
+  - Each Daily Note as independent section with collapse/expand
+  - Click title to open as standalone outline view
+  - Zoom navigation: click bullet to focus on child content with breadcrumb navigation
+  - Full outline editing features: indent, move, collapse, delete, multi-select, etc.
+  - Cross-section block dragging (normal drag to move, Alt+drag for block references)
+  - All editor shortcuts supported (Tab/Enter/Ctrl+Z, etc.)
+- **Performance optimization**:
+  - On-demand loading: configurable initial batch size, dynamic mount/unmount on scroll
+  - Delayed unloading: prevent frequent re-renders when scrolling quickly
+- **Convenient features**:
+  - Auto-create today's note: toolbar button + optional startup creation
+  - Date picker: quickly jump to specific date's Daily Note
+  - Fallback configuration: plugin-level settings when core plugin unavailable (folder, date format, template)
+  - Theme switching: supports all built-in themes, consistent with standalone view
+  - Responsive design: perfect for desktop and mobile
+
+#### Enhanced Link Navigation
+- Unified Workflowy link navigation system:
+  - Internal links `[[note]]`: open in current view or split pane
+  - Heading links `[[note#heading]]`: scroll and highlight target heading
+  - Block references `[[note#^blockid]]`: precise navigation to target block
+  - Embed link jump button: click to open source file
+- Ctrl+Alt+click or Shift+click to open in split pane
+- Link navigation in Daily Notes aggregated view:
+  - File in aggregation scope: auto-expand corresponding section and navigate
+  - File outside scope: open standalone view in new tab
+- Jump highlight effect: target content flashes yellow background for 2 seconds, fading out
+
+#### Cross-Document Drag Optimizations
+- Alt+drag block reference creation workflow optimized:
+  - Same-document source mode: fast path avoiding file events
+  - Cross-document or Live Preview: async source block ID update, wait for metadata
+  - Auto-generates Obsidian-compliant block IDs (^block-id format)
+  - Updates target position block reference after completion
+- Cross-section multi-select drag support:
+  - Detects multi-select drag data format (`workflowy-multi-blocks`)
+  - Supports batch block movement across Daily Notes sections
+  - Preserves original drop zone logic (before/after/child)
+
+### 🐛 Bug Fixes
+- Fixed multi-select drag compatibility in cross-section scenarios
+- Fixed potential data loss risk when saving before file fully loaded
+- Fixed editor container loss in certain scenarios
+- Fixed subpath navigation event payload parsing compatibility
+
+### 🔧 Improvements
+- Deep settings merge: compatible with missing nested config fields from old versions
+- Editor container caching: avoid repeated DOM queries, improve rendering performance
+- Cross-document event optimization: explicit event payload structure, supports targetLeaf specification
+- Debug logging system: enable detailed logs via `settings.isolation.debugMode`
+- Unified commands: Daily Notes view and standalone view share editing commands (indent, move, collapse, etc.)
+
+### 📝 License System
+- Daily Notes Plus features require license (7-day trial)
+- License management UI: enter license key, view status, appreciation/WeChat QR codes
+- Trial period displays remaining days
+- Expiration prompt for license renewal
+
+---
+
+## v2.7
+
+### ✨ New Features
+
+#### Table Rendering Enhancements
+- Full Markdown table support in Live Preview mode:
+  - Table borders, header background, zebra striping
+  - Text alignment within tables (left/center/right)
+  - Row hover highlighting
+- Table styles for all themes (14 built-in themes)
+- Table line break logic optimized: table rows connected with single newline to prevent parsing errors
+
+---
+### ✨ New Features
+- Support for table rendering in nodes
 
 ### ✨ New Features
 
