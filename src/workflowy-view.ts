@@ -692,8 +692,8 @@ export class WorkflowyView extends FileView {
                 if (block.children.length === 0) {
                     const emptyHint = container.createDiv('workflowy-empty-hint');
                     emptyHint.textContent = '点击新增节点';
-                    emptyHint.style.cssText = `
-                        padding-left: 60px;
+                    emptyHint.setCssProps({'css-text': `
+                        padding-left: 60px});
                         color: var(--text-muted);
                         font-style: italic;
                         cursor: pointer;
@@ -797,7 +797,7 @@ export class WorkflowyView extends FileView {
             element.classList.remove('workflowy-filtered-hidden');
             element.classList.remove('search-matched-node');
             element.classList.remove('search-parent-node');
-            element.style.display = '';
+            element.setCssProps({'display': ''});
         });
 
         // 高亮匹配的文本
@@ -841,7 +841,7 @@ export class WorkflowyView extends FileView {
             if (visibleBlocks.has(blockId)) {
                 // 可见节点
                 element.classList.remove('workflowy-filtered-hidden');
-                element.style.display = '';
+                element.setCssProps({'display': ''});
                 
                 // 区分匹配节点和父节点
                 if (matchingBlocks.has(blockId)) {
@@ -866,7 +866,7 @@ export class WorkflowyView extends FileView {
             } else {
                 // 隐藏节点
                 element.classList.add('workflowy-filtered-hidden');
-                element.style.display = 'none';
+                element.setCssProps({'display': 'none'});
                 element.classList.remove('search-matched-node');
                 element.classList.remove('search-parent-node');
                 
@@ -1028,26 +1028,28 @@ export class WorkflowyView extends FileView {
         
         // 如果有匹配，构建带高亮的 HTML
         if (matches.length > 0) {
-            let html = '';
+            // 清空现有内容
+            targetEl.empty();
+            
             let lastIndex = 0;
             
             for (const match of matches) {
                 // 添加匹配前的文本
-                html += this.escapeHtml(textContent.substring(lastIndex, match.start));
+                if (match.start > lastIndex) {
+                    const textNode = document.createTextNode(textContent.substring(lastIndex, match.start));
+                    targetEl.appendChild(textNode);
+                }
                 // 添加高亮的匹配文本
-                html += '<mark class="search-highlight">' + 
-                        this.escapeHtml(textContent.substring(match.start, match.end)) + 
-                        '</mark>';
+                const mark = document.createElement('mark');
+                mark.className = 'search-highlight';
+                mark.textContent = textContent.substring(match.start, match.end);
+                targetEl.appendChild(mark);
                 lastIndex = match.end;
             }
             // 添加剩余文本
-            html += this.escapeHtml(textContent.substring(lastIndex));
-            
-            // 设置 HTML（保留 contenteditable 属性）
-            const isEditable = targetEl.getAttribute('contenteditable');
-            targetEl.innerHTML = html;
-            if (isEditable) {
-                targetEl.setAttribute('contenteditable', isEditable);
+            if (lastIndex < textContent.length) {
+                const textNode = document.createTextNode(textContent.substring(lastIndex));
+                targetEl.appendChild(textNode);
             }
         }
     }
@@ -1099,7 +1101,7 @@ export class WorkflowyView extends FileView {
             element.classList.remove('search-matched-node');
             element.classList.remove('search-parent-node');
             element.classList.remove('workflowy-filtered-hidden');
-            element.style.display = '';
+            element.setCssProps({'display': ''});
             
             // 移除文本高亮
             if (contentEl) {

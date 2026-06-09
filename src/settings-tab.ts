@@ -14,10 +14,14 @@ export class WorkflowySettingTab extends PluginSettingTab {
         const { containerEl } = this;
         containerEl.empty();
 
-        containerEl.createEl('h1', { text: 'Workflowy插件设置' });
+        new Setting(containerEl)
+            .setName('Workflowy插件设置')
+            .setHeading();
 
         // ==================== 快捷键提示 ====================
-        containerEl.createEl('h2', { text: '快捷键设置' });
+        new Setting(containerEl)
+            .setName('快捷键设置')
+            .setHeading();
 
         const hotkeyInfo = containerEl.createEl('div', {
             cls: 'setting-item-description',
@@ -43,7 +47,9 @@ export class WorkflowySettingTab extends PluginSettingTab {
                 }));
 
         // ==================== UI设置 ====================
-        containerEl.createEl('h2', { text: 'UI设置' });
+        new Setting(containerEl)
+            .setName('UI设置')
+            .setHeading();
 
         new Setting(containerEl)
             .setName('缩进大小')
@@ -88,7 +94,9 @@ export class WorkflowySettingTab extends PluginSettingTab {
                 }));
 
         // ==================== 编辑器设置 ====================
-        containerEl.createEl('h2', { text: '编辑器设置' });
+        new Setting(containerEl)
+            .setName('编辑器设置')
+            .setHeading();
 
         new Setting(containerEl)
             .setName('自动保存')
@@ -138,7 +146,9 @@ export class WorkflowySettingTab extends PluginSettingTab {
                 }));
 
         // ==================== 搜索设置 ====================
-        containerEl.createEl('h2', { text: '搜索设置' });
+        new Setting(containerEl)
+            .setName('搜索设置')
+            .setHeading();
 
         new Setting(containerEl)
             .setName('搜索模式')
@@ -173,7 +183,9 @@ export class WorkflowySettingTab extends PluginSettingTab {
                 }));
 
         // ==================== 拖拽设置 ====================
-        containerEl.createEl('h2', { text: '拖拽设置' });
+        new Setting(containerEl)
+            .setName('拖拽设置')
+            .setHeading();
 
         new Setting(containerEl)
             .setName('启用拖拽')
@@ -206,7 +218,9 @@ export class WorkflowySettingTab extends PluginSettingTab {
                 }));
 
         // ==================== 高级设置 ====================
-        containerEl.createEl('h2', { text: '高级设置' });
+        new Setting(containerEl)
+            .setName('高级设置')
+            .setHeading();
 
         new Setting(containerEl)
             .setName('严格模式')

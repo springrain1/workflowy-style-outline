@@ -50,7 +50,7 @@ export class NavigationHeader {
                 <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
         `;
-        this.searchClearButton.style.display = 'none';  // 初始隐藏
+        this.searchClearButton.setCssProps({'display': 'none'});  // 初始隐藏
 
         // 绑定搜索事件
         this.searchInput.oninput = (e) => {
@@ -58,7 +58,7 @@ export class NavigationHeader {
             
             // 根据输入内容显示/隐藏清除按钮
             if (this.searchClearButton) {
-                this.searchClearButton.style.display = query ? 'flex' : 'none';
+                this.searchClearButton.setCssProps({'display': query ? 'flex' : 'none'});
             }
             
             if (this.onSearch) {
@@ -115,7 +115,7 @@ export class NavigationHeader {
 
         // 创建主题菜单（初始隐藏）
         this.themeMenu = this.headerElement.createDiv('workflowy-theme-menu');
-        this.themeMenu.style.display = 'none';
+        this.themeMenu.setCssProps({'display': 'none'});
 
         // 渲染主题选项
         this.renderThemeOptions();
@@ -153,13 +153,11 @@ export class NavigationHeader {
             const preview = option.createDiv('workflowy-theme-preview');
             preview.classList.add(`workflowy-theme-${theme.id}`);
             
-            // 添加示例内容
-            preview.innerHTML = `
-                <div class="theme-preview-content">
-                    <div class="theme-preview-bullet"></div>
-                    <div class="theme-preview-text">${theme.name}</div>
-                </div>
-            `;
+            // 添加示例内容 - 使用 DOM API 而非 innerHTML
+            const content = preview.createDiv('theme-preview-content');
+            content.createDiv('theme-preview-bullet');
+            const text = content.createDiv('theme-preview-text');
+            text.textContent = theme.name;
 
             // 主题信息
             const info = option.createDiv('workflowy-theme-info');
@@ -189,8 +187,8 @@ export class NavigationHeader {
             return;
         }
 
-        if (this.themeMenu.style.display === 'none') {
-            this.showThemeMenu();
+        if (this.themeMenu.setCssProps({'display': == 'none') {
+            this.showThemeMenu()});
         } else {
             this.hideThemeMenu();
         }
@@ -201,7 +199,7 @@ export class NavigationHeader {
      */
     private showThemeMenu(): void {
         if (!this.themeMenu) return;
-        this.themeMenu.style.display = 'block';
+        this.themeMenu.setCssProps({'display': 'block'});
     }
 
     /**
@@ -209,7 +207,7 @@ export class NavigationHeader {
      */
     private hideThemeMenu(): void {
         if (!this.themeMenu) return;
-        this.themeMenu.style.display = 'none';
+        this.themeMenu.setCssProps({'display': 'none'});
     }
 
     /**
@@ -293,7 +291,7 @@ export class NavigationHeader {
      */
     show(): void {
         if (this.headerElement) {
-            this.headerElement.style.display = '';
+            this.headerElement.setCssProps({'display': ''});
         }
     }
 
@@ -302,7 +300,7 @@ export class NavigationHeader {
      */
     hide(): void {
         if (this.headerElement) {
-            this.headerElement.style.display = 'none';
+            this.headerElement.setCssProps({'display': 'none'});
         }
     }
 
@@ -311,7 +309,7 @@ export class NavigationHeader {
      */
     showSearch(): void {
         if (this.searchContainer) {
-            this.searchContainer.style.display = '';
+            this.searchContainer.setCssProps({'display': ''});
         }
         // 移除 zoom 模式类名
         if (this.headerElement) {
@@ -324,7 +322,7 @@ export class NavigationHeader {
      */
     hideSearch(): void {
         if (this.searchContainer) {
-            this.searchContainer.style.display = 'none';
+            this.searchContainer.setCssProps({'display': 'none'});
         }
         // 添加 zoom 模式类名，让面包屑扩展
         if (this.headerElement) {
@@ -360,7 +358,7 @@ export class NavigationHeader {
         if (this.searchInput) {
             this.searchInput.value = '';
             if (this.searchClearButton) {
-                this.searchClearButton.style.display = 'none';
+                this.searchClearButton.setCssProps({'display': 'none'});
             }
         }
     }
@@ -372,7 +370,7 @@ export class NavigationHeader {
         if (this.searchInput) {
             this.searchInput.value = query;
             if (this.searchClearButton) {
-                this.searchClearButton.style.display = query ? 'flex' : 'none';
+                this.searchClearButton.setCssProps({'display': query ? 'flex' : 'none'});
             }
         }
     }

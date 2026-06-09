@@ -137,7 +137,7 @@ export class OutlineItem {
             this.element.classList.add('todo-completed');
         }
 
-        this.element.style.paddingLeft = `${this.block.level * UI_CONFIG.indentSize}px`;
+        this.element.setCssProps({'padding-left': `${this.block.level * UI_CONFIG.indentSize}px`});
         // 不在这里设置draggable，而是通过bullet触发拖拽
 
         // 创建内容行
@@ -148,7 +148,7 @@ export class OutlineItem {
         if (this.block.children.length > 0) {
             this.collapseIndicator = document.createElement('div');
             this.collapseIndicator.className = `workflowy-collapse ${this.editor.isCollapsed(this.block.id) ? 'collapsed' : ''}`;
-            this.collapseIndicator.innerHTML = this.editor.isCollapsed(this.block.id) ? '▶' : '▼';
+            this.collapseIndicator.textContent = this.editor.isCollapsed(this.block.id) ? '▶' : '▼';
             contentLine.appendChild(this.collapseIndicator);
         } else {
             // 占位符，保持对齐
@@ -235,11 +235,11 @@ export class OutlineItem {
         this.editorElement = document.createElement('textarea');
         this.editorElement.className = 'workflowy-content-editor';
         this.editorElement.value = this.block.content;
-        this.editorElement.style.display = 'none';  // 初始隐藏
+        this.editorElement.setCssProps({'display': 'none'});  // 初始隐藏
         this.editorElement.setAttribute('data-block-id', this.block.id);
         this.editorElement.rows = 1;  // 初始单行
-        this.editorElement.style.overflow = 'hidden';  // 隐藏滚动条
-        this.editorElement.style.resize = 'none';  // 禁止手动调整大小
+        this.editorElement.setCssProps({'overflow': 'hidden'});  // 隐藏滚动条
+        this.editorElement.setCssProps({'resize': 'none'});  // 禁止手动调整大小
         this.contentWrapper.appendChild(this.editorElement);
 
         // 绑定自动扩展功能
@@ -936,10 +936,10 @@ export class OutlineItem {
 
                 // 设置拖拽图像为整个item
                 const dragImage = this.element.cloneNode(true) as HTMLElement;
-                dragImage.style.opacity = '0.5';
+                dragImage.setCssProps({'opacity': '0.5'});
                 document.body.appendChild(dragImage);
-                dragImage.style.position = 'absolute';
-                dragImage.style.top = '-1000px';
+                dragImage.setCssProps({'position': 'absolute'});
+                dragImage.setCssProps({'top': '-1000px'});
                 e.dataTransfer.setDragImage(dragImage, 0, 0);
                 setTimeout(() => {
                     document.body.removeChild(dragImage);
@@ -1029,10 +1029,10 @@ export class OutlineItem {
         const width = containerRect.right - left;
 
         // 设置主指示线（蓝色实线）
-        OutlineItem.dropZone.style.display = 'block';
-        OutlineItem.dropZone.style.top = `${top}px`;
-        OutlineItem.dropZone.style.left = `${left}px`;
-        OutlineItem.dropZone.style.width = `${width}px`;
+        OutlineItem.dropZone.setCssProps({'display': 'block'});
+        OutlineItem.dropZone.setCssProps({'top': `${top}px`});
+        OutlineItem.dropZone.setCssProps({'left': `${left}px`});
+        OutlineItem.dropZone.setCssProps({'width': `${width}px`});
 
         // 计算缩进指示线（虚线）- 从容器左边缘到主指示线起点
         const dashPadding = 3;
@@ -1043,15 +1043,15 @@ export class OutlineItem {
 
         // 设置缩进指示线（虚线）
         if (targetIndent > 0) {
-            OutlineItem.dropZonePadding.style.width = `${targetIndent}px`;
-            OutlineItem.dropZonePadding.style.marginLeft = `-${targetIndent}px`;
+            OutlineItem.dropZonePadding.setCssProps({'width': `${targetIndent}px`});
+            OutlineItem.dropZonePadding.setCssProps({'margin-left': `-${targetIndent}px`});
             
             // 创建虚线图案 SVG
             const svgPattern = `url('data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20${targetIndent}%204%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cline%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%22${targetIndent}%22%20y2%3D%220%22%20stroke%3D%22${encodeURIComponent(accentColor)}%22%20stroke-width%3D%228%22%20stroke-dasharray%3D%22${dashWidth}%20${dashPadding}%22%2F%3E%3C%2Fsvg%3E')`;
-            OutlineItem.dropZonePadding.style.backgroundImage = svgPattern;
+            OutlineItem.dropZonePadding.setCssProps({'background-image': svgPattern});
         } else {
-            OutlineItem.dropZonePadding.style.width = '0';
-            OutlineItem.dropZonePadding.style.backgroundImage = 'none';
+            OutlineItem.dropZonePadding.setCssProps({'width': '0'});
+            OutlineItem.dropZonePadding.setCssProps({'background-image': 'none'});
         }
     }
 
@@ -1159,7 +1159,7 @@ export class OutlineItem {
     private clearDragStyles(): void {
         // 隐藏拖拽指示区域
         if (OutlineItem.dropZone) {
-            OutlineItem.dropZone.style.display = 'none';
+            OutlineItem.dropZone.setCssProps({'display': 'none'});
         }
 
         // 清除所有拖拽相关样式
@@ -1576,7 +1576,7 @@ export class OutlineItem {
 
     setLevel(level: number): void {
         this.block.level = level;
-        this.element.style.paddingLeft = `${level * UI_CONFIG.indentSize}px`;
+        this.element.setCssProps({'padding-left': `${level * UI_CONFIG.indentSize}px`});
         this.element.setAttribute('data-level', level.toString());
     }
 
@@ -1613,8 +1613,8 @@ export class OutlineItem {
 
         // 创建拖拽图像容器
         const dragContainer = document.createElement('div');
-        dragContainer.style.cssText = `
-            position: absolute;
+        dragContainer.setCssProps({'css-text': `
+            position: absolute});
             top: -1000px;
             left: -1000px;
             background: var(--background-primary);
@@ -1631,8 +1631,8 @@ export class OutlineItem {
         // 添加计数标签
         const countLabel = document.createElement('div');
         countLabel.textContent = `拖拽 ${selectedBlocks.length} 个节点`;
-        countLabel.style.cssText = `
-            font-weight: 500;
+        countLabel.setCssProps({'css-text': `
+            font-weight: 500});
             margin-bottom: 4px;
             color: var(--text-accent);
         `;
@@ -1649,8 +1649,8 @@ export class OutlineItem {
                 
                 const previewItem = document.createElement('div');
                 previewItem.textContent = `• ${content.slice(0, 20)}${content.length > 20 ? '...' : ''}`;
-                previewItem.style.cssText = `
-                    opacity: 0.8;
+                previewItem.setCssProps({'css-text': `
+                    opacity: 0.8});
                     margin: 2px 0;
                     font-size: 11px;
                 `;
@@ -1662,8 +1662,8 @@ export class OutlineItem {
         if (selectedBlocks.length > previewCount) {
             const moreItem = document.createElement('div');
             moreItem.textContent = `... 还有 ${selectedBlocks.length - previewCount} 个节点`;
-            moreItem.style.cssText = `
-                opacity: 0.6;
+            moreItem.setCssProps({'css-text': `
+                opacity: 0.6});
                 margin: 2px 0;
                 font-size: 11px;
                 font-style: italic;
@@ -1737,17 +1737,17 @@ export class OutlineItem {
 
             // 先重置 height 为 auto 来获取准确的 scrollHeight
             const originalHeight = this.editorElement.style.height;
-            this.editorElement.style.height = 'auto';
+            this.editorElement.setCssProps({'height': 'auto'});
 
             // 立即读取 scrollHeight（内容的实际高度）
             const scrollHeight = this.editorElement.scrollHeight;
 
             // 恢复 height（避免闪烁）
-            this.editorElement.style.height = originalHeight;
+            this.editorElement.setCssProps({'height': originalHeight});
 
             // 设置新的高度（如果需要）
             if (scrollHeight > 0) {
-                this.editorElement.style.height = scrollHeight + 'px';
+                this.editorElement.setCssProps({'height': scrollHeight + 'px'});
             }
 
             // 关键：强制 scrollTop 为 0，确保文本从顶部开始
@@ -1758,8 +1758,8 @@ export class OutlineItem {
         this.editorElement.addEventListener('input', autoResize);
 
         // 初始调整
-        this.editorElement.style.height = 'auto';
-        this.editorElement.style.height = this.editorElement.scrollHeight + 'px';
+        this.editorElement.setCssProps({'height': 'auto'});
+        this.editorElement.setCssProps({'height': this.editorElement.scrollHeight + 'px'});
         this.editorElement.scrollTop = 0;
     }
 
@@ -1869,12 +1869,12 @@ export class OutlineItem {
         this.isEditMode = true;
 
         // 切换显示
-        this.displayElement.style.display = 'none';
-        this.editorElement.style.display = 'block';
+        this.displayElement.setCssProps({'display': 'none'});
+        this.editorElement.setCssProps({'display': 'block'});
 
         // 调整 textarea 高度以匹配内容
-        this.editorElement.style.height = 'auto';
-        this.editorElement.style.height = this.editorElement.scrollHeight + 'px';
+        this.editorElement.setCssProps({'height': 'auto'});
+        this.editorElement.setCssProps({'height': this.editorElement.scrollHeight + 'px'});
 
         // 确保 scrollTop 为 0（新增：进入编辑时重置滚动，确保文本从顶部开始显示）
         this.editorElement.scrollTop = 0;
@@ -1915,8 +1915,8 @@ export class OutlineItem {
         }
 
         // 切换显示
-        this.editorElement.style.display = 'none';
-        this.displayElement.style.display = 'block';
+        this.editorElement.setCssProps({'display': 'none'});
+        this.displayElement.setCssProps({'display': 'block'});
 
         // 重新渲染显示层
         this.renderDisplay();

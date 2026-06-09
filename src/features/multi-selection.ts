@@ -42,8 +42,8 @@ export class MultiSelectionManager {
     private createSelectionBox(): void {
         this.selectionBox = document.createElement('div');
         this.selectionBox.className = 'workflowy-selection-box';
-        this.selectionBox.style.cssText = `
-            position: absolute;
+        this.selectionBox.setCssProps({'css-text': `
+            position: absolute});
             border: 2px dashed var(--text-accent);
             background: rgba(var(--color-accent-rgb), 0.1);
             pointer-events: none;
@@ -59,8 +59,8 @@ export class MultiSelectionManager {
     private createSelectionCounter(): void {
         this.selectionCounter = document.createElement('div');
         this.selectionCounter.className = 'workflowy-selection-counter';
-        this.selectionCounter.style.cssText = `
-            position: fixed;
+        this.selectionCounter.setCssProps({'css-text': `
+            position: fixed});
             top: 20px;
             right: 20px;
             background: var(--background-secondary);
@@ -84,9 +84,9 @@ export class MultiSelectionManager {
         const count = this.selectedBlocks.size;
         if (count > 0) {
             this.selectionCounter.textContent = `已选择 ${count} 个节点`;
-            this.selectionCounter.style.display = 'block';
+            this.selectionCounter.setCssProps({'display': 'block'});
         } else {
-            this.selectionCounter.style.display = 'none';
+            this.selectionCounter.setCssProps({'display': 'none'});
         }
     }
 
@@ -208,11 +208,11 @@ export class MultiSelectionManager {
 
         // 显示选择框（垂直线条）
         if (this.selectionBox) {
-            this.selectionBox.style.display = 'block';
-            this.selectionBox.style.left = `${this.selectionStart.x - 2}px`;
-            this.selectionBox.style.top = `${Math.min(this.selectionStart.y, e.clientY)}px`;
-            this.selectionBox.style.width = '4px';
-            this.selectionBox.style.height = `${Math.abs(deltaY)}px`;
+            this.selectionBox.setCssProps({'display': 'block'});
+            this.selectionBox.setCssProps({'left': `${this.selectionStart.x - 2}px`});
+            this.selectionBox.setCssProps({'top': `${Math.min(this.selectionStart.y, e.clientY)}px`});
+            this.selectionBox.setCssProps({'width': '4px'});
+            this.selectionBox.setCssProps({'height': `${Math.abs(deltaY)}px`});
         }
 
         // 使用节流机制更新选择，避免频繁更新
@@ -238,7 +238,7 @@ export class MultiSelectionManager {
 
             // 隐藏选择框
             if (this.selectionBox) {
-                this.selectionBox.style.display = 'none';
+                this.selectionBox.setCssProps({'display': 'none'});
             }
             
             // 如果没有选中任何节点，说明是普通点击，清除选择状态

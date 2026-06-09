@@ -42,7 +42,7 @@ export class VerticalLinesManager {
 
         // 确保容器有相对定位
         if (getComputedStyle(container).position === 'static') {
-            container.style.position = 'relative';
+            container.setCssProps({'position': 'relative'});
         }
 
         this.prepareDom(container);
@@ -62,8 +62,8 @@ export class VerticalLinesManager {
         container.appendChild(this.scroller);
 
         // 设置容器样式
-        this.scroller.style.cssText = `
-            position: absolute;
+        this.scroller.setCssProps({'css-text': `
+            position: absolute});
             top: 0;
             left: 0;
             right: 0;
@@ -73,8 +73,8 @@ export class VerticalLinesManager {
             overflow: hidden;
         `;
 
-        this.contentContainer.style.cssText = `
-            position: relative;
+        this.contentContainer.setCssProps({'css-text': `
+            position: relative});
             width: 100%;
             height: 100%;
         `;
@@ -260,7 +260,7 @@ export class VerticalLinesManager {
         // 更新容器尺寸
         const parentElement = this.scroller.parentElement;
         if (parentElement) {
-            this.contentContainer.style.height = parentElement.scrollHeight + "px";
+            this.contentContainer.setCssProps({'height': parentElement.scrollHeight + "px"});
         }
 
         // 创建或更新垂直线元素
@@ -277,10 +277,10 @@ export class VerticalLinesManager {
             const l = this.lines[i];
             const e = this.lineElements[i];
             // 确保像素对齐，避免子像素渲染问题
-            e.style.top = Math.round(l.top) + "px";
-            e.style.left = Math.round(l.left) + "px";
-            e.style.height = l.height;
-            e.style.display = "block";
+            e.setCssProps({'top': Math.round(l.top) + "px"});
+            e.setCssProps({'left': Math.round(l.left) + "px"});
+            e.setCssProps({'height': l.height});
+            e.setCssProps({'display': "block"});
             
 
         }
@@ -288,10 +288,10 @@ export class VerticalLinesManager {
         // 隐藏多余的元素
         for (let i = this.lines.length; i < this.lineElements.length; i++) {
             const e = this.lineElements[i];
-            e.style.top = "0px";
-            e.style.left = "0px";
-            e.style.height = "0px";
-            e.style.display = "none";
+            e.setCssProps({'top': "0px"});
+            e.setCssProps({'left': "0px"});
+            e.setCssProps({'height': "0px"});
+            e.setCssProps({'display': "none"});
         }
     }
 
