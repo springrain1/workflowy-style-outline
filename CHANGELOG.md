@@ -4,6 +4,47 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## v2.9
+
+### ✨ New Features
+
+#### Folder Outline View
+- **One-Click Folder Aggregation**: Right-click any folder in the file explorer and select "Open as Folder Outline" to seamlessly merge all Markdown notes within into a unified, continuous Workflowy-style outline.
+- **Smart Tab Management**: Automatically recognizes and reuses already opened folder views, avoiding duplicate tabs and keeping your workspace consistently tidy.
+- **Dynamic Title Sync**: The tab name intelligently tracks your selected folder, updating automatically in real-time.
+
+#### Seamless Bi-directional Cursor Sync
+- **Two-Way Cursor Memory**: Powered by a new core SourceMap engine. Whether editing in the Outline View or the Markdown Source View, a single click to switch will **keep your cursor precisely at the character you were editing**! No more painfully searching for your edit point in long documents.
+- **Buttery-Smooth Transitions**: Leveraged Obsidian's native `eState` (ephemeral state) engine to bypass easily race-conditioned timers, achieving a "zero-delay", instant seamless switching experience.
+
+### 🚀 Experience & Performance Boosts
+
+#### ⚡ Leap in Switching Performance
+- **Goodbye Switching Lag**: Refactored view-switching state management. We eradicated the invalid background disk-write actions to `workspace.json` that occurred during high-frequency view toggles. This not only drastically reduces device energy consumption but also noticeably enhances Obsidian's overall responsiveness.
+
+#### 🏗 Large Document Loading Optimization (Phase 1)
+- **Massive Performance Foundation Upgrade**: Completed deep performance profiling and architectural design for ultra-large documents (e.g., notes containing thousands of nodes). Thoroughly refactored the underlying rendering skeleton to pave the way for upcoming "Lightning Open" and "Instant Fold" features.
+
+---
+
+## v2.8.2
+
+### 🔧 Refactors & Optimizations
+- **Comprehensive Internationalization (i18n)**: Fully replaced hardcoded strings with the `t()` translation function across all components, including the Daily Notes Section, achieving full multi-language support.
+- **Fixed Theme Translation Failure**: Removed premature static export of the `THEMES` constant, switching to dynamic `getThemes()` calls. This permanently fixes the bug where fallback languages were loaded before i18n initialization, backed by new Vitest test cases.
+- **Rendering & Scroll Positioning**: Introduced a dual-layer `requestAnimationFrame` mechanism during Daily Notes Section mounting to ensure pixel-perfect scroll positioning and eliminate viewport jitter after complex DOM operations.
+- **Data Robustness Enhancements**: Improved the rigor of daily note date processing, searching, and creation. Upgraded YAML Frontmatter parsing security filters to seamlessly handle files with BOM characters and leading empty lines.
+
+---
+
+## v2.8.1
+
+### 🐛 Bug Fixes
+- **YAML Frontmatter Protection**: Implemented strict bypassing logic in the parser to protect the YAML frontmatter (`---`) block at the top of notes. This permanently fixes the issue where enabling Thino compatibility mode accidentally converted spaces inside YAML to tabs, which caused parsing errors.
+- **View Switching Experience**: Fixed an issue where switching from Outline View to Markdown View in a single document would unnecessarily open a new tab. It now seamlessly transforms the current tab in-place, keeping the new-tab behavior exclusive to the Daily Notes aggregated view.
+
+---
+
 ## v2.8
 
 ### ✨ New Features
